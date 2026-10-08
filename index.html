@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=797b6a76540e">
+  <link rel="stylesheet" href="assets/style.css?v=872dfa96b5ea">
   <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
 </head>
 <body>
@@ -54,6 +54,24 @@
         <div class="output-stage">
           <div class="stage-label">Patch-wise denoising</div>
           <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=b83b5c6d0ed5" type="video/mp4"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="abstract" class="abstract-section" aria-labelledby="abstract-title">
+    <div class="wrap abstract-content">
+      <h2 id="abstract-title">Abstract</h2>
+      <p class="abstract-text">Autoregressive video diffusion models have become a leading approach to real-time interactive video generation and video world modeling. However, existing methods typically allocate computation uniformly across space when generating the next video chunk, updating all patches with the same denoising schedule and number of function evaluations. This ignores the spatial heterogeneity of video content: static, simple, or recurring regions are often easier to denoise, while other regions require further refinement or additional context. A uniform budget thus leads to redundant computation on easy patches, whereas reducing the fixed step count can leave difficult patches insufficiently refined. We introduce ForcingBooster, a general framework that dynamically allocates denoising steps to individual patches: easy patches stop early to improve efficiency, while difficult patches receive more refinement steps. This design accelerates generation with negligible quality degradation. Our method is compatible with most existing few-step autoregressive diffusion models, requiring only a lightweight routing module with modest training. Experiments demonstrate that ForcingBooster reduces the total number of denoising steps applied across video patches by about 50% while maintaining visual quality comparable to the four-step baseline.</p>
+      <div class="speedup-highlights" aria-label="Acceleration highlights">
+        <div class="efficiency-stat">
+          <strong class="stat-value">50%</strong>
+          <h3>Fewer denoising steps</h3>
+          <p>On average, reduces the total number of denoising steps applied across video patches by about half.</p>
+        </div>
+        <div class="efficiency-stat">
+          <strong class="stat-value">1.3×</strong>
+          <h3>Additional speedup</h3>
+          <p>Unlocks faster end-to-end video generation compared with the four-step baseline.</p>
         </div>
       </div>
     </div>

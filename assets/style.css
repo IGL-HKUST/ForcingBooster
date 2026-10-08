@@ -75,3 +75,15 @@
 .model-stage{gap:12px;grid-template-columns:1fr 1.08fr}.existing-module{border-radius:12px}.existing-module:after{content:none;display:none}.router-module{padding-left:12px}
 .existing-module>span:first-child,.router-module>span,.existing-module>span:last-child,.router-module>strong{transform:none}
 @media(max-width:900px){.input-window{height:165px}.model-stage{max-width:100%;width:300px}.hero-camera-box .camera-controller{max-width:270px}}
+
+/* Paper abstract and the two distinct efficiency gains. */
+.abstract-section{padding:66px 0 64px;background:var(--soft);border-block:1px solid #e4ece6}
+.abstract-content{max-width:1000px}.abstract-content h2{text-align:center;margin-bottom:26px}
+.abstract-text{margin:0;color:#435c51;font-size:16px;line-height:1.85;text-align:left}
+.speedup-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:42px;padding-top:36px;border-top:1px solid #d6e3db}
+.efficiency-stat{text-align:center;padding:0 30px}.efficiency-stat+.efficiency-stat{border-left:1px solid #d6e3db}
+.stat-value{display:block;color:var(--accent);font-size:clamp(64px,6.5vw,88px);font-weight:750;line-height:1.05;letter-spacing:-4px;font-variant-numeric:lining-nums}
+.efficiency-stat h3{font-size:18px;line-height:1.4;font-weight:650;margin:14px 0 10px;letter-spacing:-.2px}
+.efficiency-stat p{max-width:350px;margin:0 auto;color:var(--text);font-size:14px;line-height:1.7}
+@media(max-width:800px){.abstract-section{padding:46px 0}.abstract-text{font-size:15px;line-height:1.8}.efficiency-stat{padding:0 18px}.stat-value{font-size:68px}}
+@media(max-width:500px){.abstract-content h2{margin-bottom:22px}.abstract-text{font-size:14px}.speedup-highlights{grid-template-columns:1fr;margin-top:30px;padding-top:30px;gap:28px}.efficiency-stat{padding:0 8px}.efficiency-stat+.efficiency-stat{border-left:0;border-top:1px solid #d6e3db;padding-top:28px}.stat-value{font-size:68px;letter-spacing:-3px}.efficiency-stat h3{font-size:17px;margin-top:12px}}
