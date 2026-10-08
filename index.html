@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=872dfa96b5ea">
+  <link rel="stylesheet" href="assets/style.css?v=3c17006d3ede">
   <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <p><sup>2</sup> Macau University of Science and Technology</p>
       <p><sup>3</sup> VAST</p>
     </div>
-    <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#overview">How it works <span aria-hidden="true">↓</span></a></div>
+    <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#overview">How it works <span aria-hidden="true">↓</span></a><button class="button secondary code-placeholder" type="button" disabled>Code (coming soon)</button></div>
     <div class="method-card is-paused" id="overview" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
       <div class="method-flow">
         <svg class="flow-line" aria-hidden="true"><defs><pattern id="flow-ink" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#172a22"/><rect width="6" height="12" fill="#29a66c"/></pattern><marker id="flow-tip" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#218b5d"/></marker></defs><path class="flow-connection" fill="none" stroke="url(#flow-ink)" stroke-width="3" marker-end="url(#flow-tip)"/></svg>
@@ -78,7 +78,7 @@
   </section>
   <section id="interactive" class="results wrap"><div class="section-heading"><h2>Interactive Video Generation</h2></div><div class="gallery" data-gallery="interactive"></div></section>
   <section id="world" class="results world-section"><div class="wrap"><div class="section-heading"><h2>Video World Model</h2></div><div class="gallery" data-gallery="world"></div></div></section>
-  <section class="closing wrap"><p class="eyebrow">ONE FRAMEWORK, TWO GENERATION SETTINGS</p><h2>Less redundant refinement.<br>More adaptive video generation.</h2><p>Each color represents an allocated denoising step count, rather than a semantic or motion label.</p><a href="#" class="text-link">Back to top ↑</a></section>
+  <div class="back-to-top wrap"><a href="#" class="text-link">Back to top ↑</a></div>
 </main>
 <footer><div class="wrap footer-inner"><a class="brand" href="#">ForcingBooster</a><p>Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion</p><a href="assets/config/sources.json">Example sources</a></div></footer>
 <noscript><p class="noscript">Enable JavaScript to load the video galleries. <a href="assets/config/sources.json">View the example source list.</a></p></noscript>
