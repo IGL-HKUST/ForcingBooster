@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=3c17006d3ede">
+  <link rel="stylesheet" href="assets/style.css?v=4dfa6bc638ba">
   <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
 </head>
 <body>
@@ -24,7 +24,7 @@
       <p><sup>3</sup> VAST</p>
     </div>
     <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#overview">How it works <span aria-hidden="true">↓</span></a><button class="button secondary code-placeholder" type="button" disabled>Code (coming soon)</button></div>
-    <div class="method-card is-paused" id="overview" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
+    <div class="method-card is-paused" id="overview" aria-describedby="overview-caption" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
       <div class="method-flow">
         <svg class="flow-line" aria-hidden="true"><defs><pattern id="flow-ink" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#172a22"/><rect width="6" height="12" fill="#29a66c"/></pattern><marker id="flow-tip" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#218b5d"/></marker></defs><path class="flow-connection" fill="none" stroke="url(#flow-ink)" stroke-width="3" marker-end="url(#flow-tip)"/></svg>
         <div class="prompt-stage input-window">
@@ -57,6 +57,7 @@
         </div>
       </div>
     </div>
+    <p id="overview-caption" class="overview-caption">ForcingBooster accelerates interactive video generation and world model by adaptively allocating different denoising steps to different patches. <strong>Static backgrounds need fewer updates than moving objects, new regions or detailed textures.</strong></p>
   </section>
   <section id="abstract" class="abstract-section" aria-labelledby="abstract-title">
     <div class="wrap abstract-content">

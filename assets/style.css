@@ -92,3 +92,7 @@
 .hero-actions{flex-wrap:wrap}.hero-actions .button{white-space:nowrap}
 .code-placeholder,.code-placeholder:hover{color:#6a7a72;background:#f5f8f6;border-color:var(--line);cursor:default;opacity:1}
 .back-to-top{text-align:center;padding-block:24px}
+
+.overview-caption{max-width:1120px;margin:22px auto 0;color:var(--text);font-size:15px;line-height:1.8;text-align:center}
+.overview-caption strong{display:block;color:var(--ink);font-weight:700;margin-top:4px}
+@media(max-width:500px){.overview-caption{font-size:13px;margin-top:18px}}
