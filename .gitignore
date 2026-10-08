@@ -1,0 +1,43 @@
+# Python/build caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and assistant-local state
+/.vscode/
+/.claude/
+
+# Local models, data, checkpoints, logs, and generated outputs
+/wan_models/
+/checkpoints/
+/ckpts
+/dataset/
+/logs/
+/wandb/
+/output/
+/outputs/
+/checkpoints
+/prompts
+/tests/
+/assets/lingbot-world-v2
+
+# Local prompt corpora and historical experiment assets. Tracked examples remain
+# available, while canonical config/scripts now live below methods/**.
+/prompts/
+/configs/
+/scripts/
+/experiment/
+/experiments/
+/docs/
+/build/
+/latex/
+/artifacts/
+
+# Method documentation stays local.
+/methods/**/*.md
+
+# Local training-code leftovers are not part of the website branch.
+/methods/

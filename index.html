@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ForcingBooster dynamically allocates denoising steps to video patches. Explore paired generation previews and denoising schedules for interactive video generation and video world models.">
+  <meta name="theme-color" content="#167b69">
+  <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css?v=797b6a76540e">
+  <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">▦</span> ForcingBooster</a><nav aria-label="Main navigation"><a href="#overview">Overview</a><a href="#interactive">Interactive Generation</a><a href="#world">World Models</a></nav></div></header>
+<main id="main">
+  <section class="hero wrap">
+    <h1><span>ForcingBooster:</span> Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion</h1>
+    <div class="authors" aria-label="Authors">
+      <span>Zekai Gu<sup>1,3</sup></span><span>Peng Wang<sup>3</sup></span><span>Jiahao Lu<sup>1</sup></span><span>Yongsen Mao<sup>1</sup></span><span>Cheng Lin<sup>2</sup></span><span>Yuan Liu<sup>1</sup></span>
+    </div>
+    <div class="affiliations" aria-label="Author affiliations">
+      <p><sup>1</sup> The Hong Kong University of Science and Technology</p>
+      <p><sup>2</sup> Macau University of Science and Technology</p>
+      <p><sup>3</sup> VAST</p>
+    </div>
+    <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#overview">How it works <span aria-hidden="true">↓</span></a></div>
+    <div class="method-card is-paused" id="overview" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
+      <div class="method-flow">
+        <svg class="flow-line" aria-hidden="true"><defs><pattern id="flow-ink" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#172a22"/><rect width="6" height="12" fill="#29a66c"/></pattern><marker id="flow-tip" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#218b5d"/></marker></defs><path class="flow-connection" fill="none" stroke="url(#flow-ink)" stroke-width="3" marker-end="url(#flow-tip)"/></svg>
+        <div class="prompt-stage input-window">
+          <div class="hero-input-panel hero-text-panel">
+            <div class="stage-label">Text prompt</div>
+            <div class="prompt-box"><p aria-label="At sunrise, a climber in a burnt-orange jacket checks her harness, climbs the rock, and raises a fist above the canyon."><span class="prompt-typed" aria-hidden="true">At sunrise, a climber in a burnt-orange jacket checks her harness, climbs the rock, and raises a fist above the canyon.</span><span class="typing-cursor" aria-hidden="true"></span></p></div>
+          </div>
+          <div class="hero-input-panel hero-camera-panel" aria-hidden="true">
+            <div class="stage-label">Camera controls</div>
+            <div class="hero-camera-box"><div class="camera-controller" role="img" aria-label="Recorded WASD input and camera look direction for the city walkthrough">
+              <svg viewBox="0 0 240 88" aria-hidden="true">
+                <g class="camera-key"><rect x="65" y="12" width="25" height="26" rx="4"/><text x="77.5" y="29" text-anchor="middle">W</text></g>
+                <g class="camera-key"><rect x="35" y="43" width="25" height="26" rx="4"/><text x="47.5" y="60" text-anchor="middle">A</text></g>
+                <g class="camera-key"><rect x="65" y="43" width="25" height="26" rx="4"/><text x="77.5" y="60" text-anchor="middle">S</text></g>
+                <g class="camera-key"><rect x="95" y="43" width="25" height="26" rx="4"/><text x="107.5" y="60" text-anchor="middle">D</text></g>
+                <circle cx="181" cy="43" r="27" fill="none" stroke="#adc0c9"/><circle cx="181" cy="43" r="18" fill="none" stroke="#d8e2e4"/>
+                <path d="M181 12v7m0 48v7M150 43h7m48 0h7" fill="none" stroke="#adc0c9"/>
+                <line class="stick-stem" x1="181" y1="43" x2="181" y2="43" stroke="#008d91" stroke-width="3" stroke-linecap="round"/><circle class="stick-dot" cx="181" cy="43" r="6" fill="#008d91"/>
+              </svg>
+            </div></div>
+          </div>
+        </div>
+        <div class="model-stage">
+          <div class="existing-module"><span>Existing</span><span>Method</span></div>
+          <div class="router-module"><span>ForcingBooster</span><strong>Router</strong></div>
+        </div>
+        <div class="output-stage">
+          <div class="stage-label">Patch-wise denoising</div>
+          <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=b83b5c6d0ed5" type="video/mp4"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="interactive" class="results wrap"><div class="section-heading"><h2>Interactive Video Generation</h2></div><div class="gallery" data-gallery="interactive"></div></section>
+  <section id="world" class="results world-section"><div class="wrap"><div class="section-heading"><h2>Video World Model</h2></div><div class="gallery" data-gallery="world"></div></div></section>
+  <section class="closing wrap"><p class="eyebrow">ONE FRAMEWORK, TWO GENERATION SETTINGS</p><h2>Less redundant refinement.<br>More adaptive video generation.</h2><p>Each color represents an allocated denoising step count, rather than a semantic or motion label.</p><a href="#" class="text-link">Back to top ↑</a></section>
+</main>
+<footer><div class="wrap footer-inner"><a class="brand" href="#">ForcingBooster</a><p>Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion</p><a href="assets/config/sources.json">Example sources</a></div></footer>
+<noscript><p class="noscript">Enable JavaScript to load the video galleries. <a href="assets/config/sources.json">View the example source list.</a></p></noscript>
+</body></html>

@@ -1,0 +1,21 @@
+{
+  "preview": "ForcingBooster/logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .mp4",
+  "exitMap": "ForcingBooster/logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/exit_maps/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .pt",
+  "visualPatchGrouping": "2x2 actual patches; max exit in each group; 32x32 source pixels / 24x24 rendered pixels",
+  "fps": 24,
+  "seconds": 22,
+  "sourceStartFrame": 9,
+  "latentMapping": "(sourceFrame + 3) // 4",
+  "effect": "Illustrative noise compositing driven by saved exit steps, not recorded intermediate denoising states. Slow patches retain noise until their exit.",
+  "loop": "0\u20139 climber; 9\u20139.4 prompt fades up/out; 9.4\u20139.9 controller slides in and world fades in; 9.9\u201311.4 initial world denoising; 11.4\u201320.34 world playback; 20.34\u201320.9 clean hold; 20.9\u201321.3 controller fades out; 21.3\u201321.8 prompt returns; repeat at 22s.",
+  "worldModel": {
+    "preview": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/official_02.mp4",
+    "exitMap": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/exit_maps/official_02.pt",
+    "poseSource": "assets/lingbot-world-v2/examples/02/poses.npy",
+    "keySource": "assets/lingbot-world-v2/examples/02/wasd_action.npy",
+    "startFrame": 13,
+    "fps": 16,
+    "visualPatchGrouping": "2x2 maximum exit; bottom edge cropped to one patch (12 rendered pixels); original video aspect ratio preserved"
+  },
+  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch, using the same exit-step-driven curve for initial denoising and later chunks. Climber 1.2\u20133.2s, city 9.9\u201311.4s."
+}
