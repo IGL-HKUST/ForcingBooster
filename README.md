@@ -33,11 +33,11 @@ The existing `.gitignore` is preserved. Ignored local training code, models, log
 
 - Two example cards per row on desktop, with a single-column layout on smaller screens.
 - 6 Interactive Video Generation examples.
-- 4 Video World Model examples.
+- 5 Video World Model examples.
 - Every example pairs a generated video with its original denoising schedule overlay, with shared play/pause, seeking, restart, and a step-color legend to the right of each Denoising Schedule heading.
 - Playback starts on demand. Only one example plays at a time; hidden examples pause.
 - `assets/config/data.js` supplies gallery metadata. `assets/config/sources.json` records source project and log paths, not runtime dependencies.
-- `assets/videos/` contains the 10 gallery previews, the hero animation, and the How it works explainer, each with a poster. `assets/exitmap/` contains the 10 denoising schedule videos and their posters. Preview videos are losslessly remuxed with fast-start metadata. The two added overlays are rendered from their matching exit maps using the legend palette and the causal VAE mapping `(frame + 3) // 4`.
+- `assets/videos/` contains the 11 gallery previews, the hero animation, and the How it works explainer, each with a poster. `assets/exitmap/` contains the 11 denoising schedule videos, the synchronized hero heatmap, and their posters. Preview videos are losslessly remuxed with fast-start metadata. The two added overlays are rendered from their matching exit maps using the legend palette and the causal VAE mapping `(frame + 3) // 4`.
 
 The title and method text are based on the local manuscript. The author list and affiliations follow the supplied reference, with VAST added for Zekai Gu and Peng Wang. Publication links and citation metadata are omitted until provided. The layout is inspired by https://igl-hkust.github.io/GO-Renderer/; no reference-site code or media is copied.
 
@@ -47,4 +47,6 @@ The hero overview is a looping alternating text prompt / camera controls → Exi
 
 The hero alternates the original female-climber example with the official_02 city walkthrough. After the first clip, the prompt fades upward; recorded WASD/trajectory controls slide in and follow the world video. The loop then transitions back to text. `assets/config/hero-world-motion.js` contains the original 157-frame camera controls. The two method modules use separate rounded rectangles without a puzzle tab.
 
-The How it works section follows the abstract. Its video is the 00:03–00:54 excerpt (51 seconds) of the supplied `2586.mp4`, preserving the original 1280×720 resolution and 15 fps. It autoplays muted and loops; native controls allow pause, seeking, and audio. The hero’s How it works button links directly to this section.
+The How it works section follows the abstract. Its video is the 00:03–00:54 excerpt (51 seconds) of the supplied `2586.mp4`, preserving the original 1280×720 resolution and 15 fps. It autoplays muted and loops; native controls allow pause and seeking. Its audio track has been removed. The hero’s How it works button links directly to this section.
+
+The hero output has a draggable Preview / Heatmap divider and a 1–4 steps legend. The preview retains its noise-to-image animation; the heatmap uses the corresponding clean frame with the recorded 2×2-grouped exit map at 48% opacity. Both videos share the same 22-second timeline, including transitions. Great Wall is the first World Model example; official_00 (Through the jungle) includes its matching schedule overlay and recorded camera controls.

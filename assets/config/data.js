@@ -92,6 +92,26 @@ window.EXAMPLES = [
     "overlayPoster": "assets/exitmap/running-dog-overlay.jpg"
   },
   {
+    "id": "great-wall",
+    "title": "Along the Great Wall",
+    "description": "official_04",
+    "category": "world",
+    "sample": "official_04",
+    "source": {
+      "preview": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/preview_merged/router/official_04.mp4",
+      "overlay": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/preview_merged/overlay/official_04.mp4",
+      "camera": {
+        "kind": "Recorded WASD; joystick derived from camera trajectory",
+        "poseSource": "assets/lingbot-world-v2/examples/04/poses.npy",
+        "keySource": "assets/lingbot-world-v2/examples/04/wasd_action.npy"
+      }
+    },
+    "preview": "assets/videos/great-wall-preview.mp4",
+    "previewPoster": "assets/videos/great-wall-preview.jpg",
+    "overlay": "assets/exitmap/great-wall-overlay.mp4",
+    "overlayPoster": "assets/exitmap/great-wall-overlay.jpg"
+  },
+  {
     "id": "classroom",
     "title": "Through the classroom",
     "description": "dl3dv_00039",
@@ -167,23 +187,24 @@ window.EXAMPLES = [
     "overlayPoster": "assets/exitmap/toy-display-overlay.jpg"
   },
   {
-    "id": "great-wall",
-    "title": "Along the Great Wall",
-    "description": "official_04",
+    "id": "dragon-flight",
+    "title": "Through the jungle",
+    "description": "official_00",
     "category": "world",
-    "sample": "official_04",
+    "sample": "official_00",
     "source": {
-      "preview": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/preview_merged/router/official_04.mp4",
-      "overlay": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/preview_merged/overlay/official_04.mp4",
+      "preview": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/official_00.mp4",
+      "overlay": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/overlays/official_00.mp4",
+      "exit_map": "ForcingBooster/logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/exit_maps/official_00.pt",
       "camera": {
         "kind": "Recorded WASD; joystick derived from camera trajectory",
-        "poseSource": "assets/lingbot-world-v2/examples/04/poses.npy",
-        "keySource": "assets/lingbot-world-v2/examples/04/wasd_action.npy"
+        "poseSource": "assets/lingbot-world-v2/examples/00/poses.npy",
+        "keySource": "assets/lingbot-world-v2/examples/00/wasd_action.npy"
       }
     },
-    "preview": "assets/videos/great-wall-preview.mp4",
-    "previewPoster": "assets/videos/great-wall-preview.jpg",
-    "overlay": "assets/exitmap/great-wall-overlay.mp4",
-    "overlayPoster": "assets/exitmap/great-wall-overlay.jpg"
+    "preview": "assets/videos/dragon-flight-preview.mp4",
+    "previewPoster": "assets/videos/dragon-flight-preview.jpg",
+    "overlay": "assets/exitmap/dragon-flight-overlay.mp4",
+    "overlayPoster": "assets/exitmap/dragon-flight-overlay.jpg"
   }
 ];

@@ -17,5 +17,17 @@
     "fps": 16,
     "visualPatchGrouping": "2x2 maximum exit; bottom edge cropped to one patch (12 rendered pixels); original video aspect ratio preserved"
   },
-  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch, using the same exit-step-driven curve for initial denoising and later chunks. Climber 1.2\u20133.2s, city 9.9\u201311.4s."
+  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch, using the same exit-step-driven curve for initial denoising and later chunks. Climber 1.2\u20133.2s, city 9.9\u201311.4s.",
+  "heatmap": {
+    "video": "assets/exitmap/hero-alternating-heatmap.mp4",
+    "poster": "assets/exitmap/hero-heatmap.jpg",
+    "overlayOpacity": 0.48,
+    "palette": [
+      "#1f964e",
+      "#297ed3",
+      "#d58b17",
+      "#d74141"
+    ],
+    "mapping": "Same source frames, 2x2 maximum-exit groups, latent mapping, and 22-second transitions as the denoising preview; overlaid on the corresponding clean frames."
+  }
 }

@@ -100,3 +100,17 @@
 .how-it-works-section{padding-top:64px}.how-it-works-section h2{text-align:center;margin-bottom:28px}
 .how-it-works-section video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid var(--line);border-radius:12px;background:#111}
 @media(max-width:800px){.how-it-works-section{padding-top:46px}.how-it-works-section h2{margin-bottom:22px}}
+
+/* Drag a shared divider across synchronized preview and heatmap videos. */
+.hero-comparison{position:relative;width:100%;aspect-ratio:26/15;overflow:hidden;border:1px solid #dae3dd;border-radius:10px;background:#e8ece9;isolation:isolate}
+.hero-comparison video{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;border:0;border-radius:0}
+.hero-comparison #hero-denoising{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
+.comparison-label{position:absolute;top:9px;padding:3px 8px;background:#172e2abb;border-radius:4px;color:white;font-size:11px;font-weight:600;line-height:1.5;pointer-events:none}
+.preview-label{left:9px}.heatmap-label{right:9px}
+.comparison-divider{position:absolute;inset-block:0;left:var(--split);width:2px;background:white;transform:translateX(-50%);box-shadow:0 0 3px #0004;pointer-events:none}
+.comparison-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:white;color:#263b32;font-size:11px;white-space:nowrap;box-shadow:0 1px 5px #0003}
+.comparison-slider{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.hero-comparison:focus-within{outline:3px solid #299e85;outline-offset:4px}
+.hero-step-legend{position:absolute;top:100%;left:0;width:100%;display:flex;justify-content:center;align-items:center;gap:12px;padding-top:9px;font-size:10px;line-height:1.4;color:#64756e}
+.hero-step-legend>span{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.hero-step-legend i{display:inline-block;width:8px;height:8px;border-radius:1px}
+@media(max-width:500px){.comparison-label{top:7px;font-size:10px;padding:2px 6px}.preview-label{left:7px}.heatmap-label{right:7px}.comparison-handle{width:30px;height:30px;font-size:10px}}

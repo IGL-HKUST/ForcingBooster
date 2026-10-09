@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=cda62e23b31b">
-  <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=94ab7f87956d">
+  <script src="assets/config/data.js?v=14cfd6c25c21" defer></script><script src="assets/config/camera-data.js?v=99ddee2f462d" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=6d6a4b2cf11e" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -53,7 +53,14 @@
         </div>
         <div class="output-stage">
           <div class="stage-label">Patch-wise denoising</div>
-          <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=b83b5c6d0ed5" type="video/mp4"></video>
+          <div class="hero-comparison" style="--split:50%">
+            <video id="hero-heatmap" muted playsinline loop preload="auto" poster="assets/exitmap/hero-heatmap.jpg?v=d25391309a77" aria-hidden="true"><source src="assets/exitmap/hero-alternating-heatmap.mp4?v=e0ccf7f206b5" type="video/mp4"></video>
+            <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=b83b5c6d0ed5" type="video/mp4"></video>
+            <span class="comparison-label preview-label" aria-hidden="true">Preview</span><span class="comparison-label heatmap-label" aria-hidden="true">Heatmap</span>
+            <span class="comparison-divider" aria-hidden="true"><span class="comparison-handle">◀ ▶</span></span>
+            <input class="comparison-slider" type="range" min="0" max="100" value="50" step="1" aria-label="Drag to compare denoising preview and heatmap" aria-valuetext="Preview 50%, heatmap 50%">
+          </div>
+          <div class="hero-step-legend" aria-label="Denoising steps"><span>Steps</span><span><i class="step1" aria-hidden="true"></i>1</span><span><i class="step2" aria-hidden="true"></i>2</span><span><i class="step3" aria-hidden="true"></i>3</span><span><i class="step4" aria-hidden="true"></i>4</span></div>
         </div>
       </div>
     </div>
@@ -79,7 +86,7 @@
   </section>
   <section id="how-it-works" class="how-it-works-section wrap" aria-labelledby="how-it-works-title">
     <h2 id="how-it-works-title">How it works</h2>
-    <video id="how-it-works-video" autoplay muted playsinline loop controls preload="metadata" width="1280" height="720" poster="assets/videos/how-it-works.jpg?v=798686c15cbe" aria-label="How ForcingBooster allocates denoising steps across video patches"><source src="assets/videos/how-it-works.mp4?v=48a3886c1870" type="video/mp4"></video>
+    <video id="how-it-works-video" autoplay muted playsinline loop controls preload="metadata" width="1280" height="720" poster="assets/videos/how-it-works.jpg?v=798686c15cbe" aria-label="How ForcingBooster allocates denoising steps across video patches"><source src="assets/videos/how-it-works.mp4?v=c1d267e896a6" type="video/mp4"></video>
   </section>
   <section id="interactive" class="results wrap"><div class="section-heading"><h2>Interactive Video Generation</h2></div><div class="gallery" data-gallery="interactive"></div></section>
   <section id="world" class="results world-section"><div class="wrap"><div class="section-heading"><h2>Video World Model</h2></div><div class="gallery" data-gallery="world"></div></div></section>

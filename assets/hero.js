@@ -2,7 +2,8 @@
 (() => {
   const card = document.querySelector('.method-card');
   if (!card) return;
-  const video = card.querySelector('video'), flow = card.querySelector('.method-flow');
+  const video = card.querySelector('#hero-denoising'), heatmap = card.querySelector('#hero-heatmap'), flow = card.querySelector('.method-flow');
+  const comparison = card.querySelector('.hero-comparison'), slider = card.querySelector('.comparison-slider');
   const typed = card.querySelector('.prompt-typed'), fullPrompt = typed.textContent;
   const cursor = card.querySelector('.typing-cursor');
   const textPanel = card.querySelector('.hero-text-panel'), cameraPanel = card.querySelector('.hero-camera-panel');
@@ -11,6 +12,17 @@
   const svg = card.querySelector('.flow-line'), path = svg.querySelector('.flow-connection'), pattern = svg.querySelector('pattern');
   let visible = false, raf = 0;
   const ease = x => {x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
+  function setSplit(){
+    const value=Number(slider.value);
+    comparison.style.setProperty('--split',`${value}%`);
+    slider.setAttribute('aria-valuetext',`Preview ${value}%, heatmap ${100-value}%`);
+  }
+  slider.addEventListener('input',setSplit);setSplit();
+  function syncHeatmap(force=false){
+    if(heatmap.readyState<1)return;
+    if(force||(!heatmap.seeking&&Math.abs(heatmap.currentTime-video.currentTime)>.06))heatmap.currentTime=video.currentTime;
+  }
+  function playHeatmap(){if(!video.paused)heatmap.play().catch(()=>{});}
   function placeLine() {
     const box = flow.getBoundingClientRect(), input = card.querySelector('.input-window').getBoundingClientRect(), output = video.getBoundingClientRect();
     svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
@@ -29,6 +41,7 @@
     element.setAttribute('aria-hidden',String(opacity===0));
   }
   function update() {
+    syncHeatmap();
     const t=video.currentTime;
     let textAlpha=0,textY=0,cameraAlpha=0,cameraY=0;
     if(t<9)textAlpha=1;
@@ -52,10 +65,18 @@
     }
   }
   function frame(){update();if(!video.paused)raf=requestAnimationFrame(frame);}
-  function reflect(){card.classList.toggle('is-paused',video.paused);cancelAnimationFrame(raf);if(!video.paused)frame();}
+  function reflect(){
+    card.classList.toggle('is-paused',video.paused);cancelAnimationFrame(raf);
+    if(video.paused)heatmap.pause();
+    else{syncHeatmap(true);playHeatmap();frame();}
+  }
   function resume(){if(visible&&!document.hidden)video.play().catch(reflect);}
   video.addEventListener('play',reflect);video.addEventListener('pause',reflect);
-  video.addEventListener('seeked',update);video.addEventListener('loadedmetadata',()=>{placeLine();resume();});
+  video.addEventListener('seeking',()=>syncHeatmap(true));
+  video.addEventListener('seeked',()=>{syncHeatmap(true);update();});
+  video.addEventListener('waiting',()=>heatmap.pause());video.addEventListener('playing',playHeatmap);
+  heatmap.addEventListener('loadedmetadata',()=>{syncHeatmap(true);playHeatmap();});
+  video.addEventListener('loadedmetadata',()=>{placeLine();resume();});
   video.addEventListener('error',()=>{typed.textContent=fullPrompt;cursor.style.visibility='hidden';video.pause();});
   new ResizeObserver(placeLine).observe(flow);
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)resume();else video.pause();},{threshold:.12}).observe(card);
