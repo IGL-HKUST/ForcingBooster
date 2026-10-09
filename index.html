@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=4dfa6bc638ba">
+  <link rel="stylesheet" href="assets/style.css?v=cda62e23b31b">
   <script src="assets/config/data.js?v=b47afa626c42" defer></script><script src="assets/config/camera-data.js?v=d520bfac8f6f" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=1c1f930d14ff" defer></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
       <p><sup>2</sup> Macau University of Science and Technology</p>
       <p><sup>3</sup> VAST</p>
     </div>
-    <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#overview">How it works <span aria-hidden="true">↓</span></a><button class="button secondary code-placeholder" type="button" disabled>Code (coming soon)</button></div>
+    <div class="hero-actions"><a class="button primary" href="#interactive">Explore the results <span aria-hidden="true">↗</span></a><a class="button secondary" href="#how-it-works">How it works <span aria-hidden="true">↓</span></a><button class="button secondary code-placeholder" type="button" disabled>Code (coming soon)</button></div>
     <div class="method-card is-paused" id="overview" aria-describedby="overview-caption" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
       <div class="method-flow">
         <svg class="flow-line" aria-hidden="true"><defs><pattern id="flow-ink" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#172a22"/><rect width="6" height="12" fill="#29a66c"/></pattern><marker id="flow-tip" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#218b5d"/></marker></defs><path class="flow-connection" fill="none" stroke="url(#flow-ink)" stroke-width="3" marker-end="url(#flow-tip)"/></svg>
@@ -76,6 +76,10 @@
         </div>
       </div>
     </div>
+  </section>
+  <section id="how-it-works" class="how-it-works-section wrap" aria-labelledby="how-it-works-title">
+    <h2 id="how-it-works-title">How it works</h2>
+    <video id="how-it-works-video" autoplay muted playsinline loop controls preload="metadata" width="1280" height="720" poster="assets/videos/how-it-works.jpg?v=798686c15cbe" aria-label="How ForcingBooster allocates denoising steps across video patches"><source src="assets/videos/how-it-works.mp4?v=48a3886c1870" type="video/mp4"></video>
   </section>
   <section id="interactive" class="results wrap"><div class="section-heading"><h2>Interactive Video Generation</h2></div><div class="gallery" data-gallery="interactive"></div></section>
   <section id="world" class="results world-section"><div class="wrap"><div class="section-heading"><h2>Video World Model</h2></div><div class="gallery" data-gallery="world"></div></div></section>

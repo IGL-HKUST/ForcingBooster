@@ -96,3 +96,7 @@
 .overview-caption{max-width:1120px;margin:22px auto 0;color:var(--text);font-size:15px;line-height:1.8;text-align:center}
 .overview-caption strong{display:block;color:var(--ink);font-weight:700;margin-top:4px}
 @media(max-width:500px){.overview-caption{font-size:13px;margin-top:18px}}
+
+.how-it-works-section{padding-top:64px}.how-it-works-section h2{text-align:center;margin-bottom:28px}
+.how-it-works-section video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid var(--line);border-radius:12px;background:#111}
+@media(max-width:800px){.how-it-works-section{padding-top:46px}.how-it-works-section h2{margin-bottom:22px}}
