@@ -1,0 +1,18 @@
+upstream_root: logs/h3/upstream
+weights:
+  model: https://huggingface.co/junchaoh-cs/SolarWM-H3-33B
+  checkpoint: null
+examples_root: assets/lingbot-world-v2/examples
+manifest: null
+conditions_dir: logs/h3/examples/conditions
+silence_file: logs/h3/examples/silence.safetensors
+sample_ids: []
+output_dir: logs/h3/native
+seed: 42
+mode: native
+forced_exit_step: null
+head_dim: 2048
+exit_threshold: 0.5
+decode: true
+save_latents: true
+save_exit_steps: true

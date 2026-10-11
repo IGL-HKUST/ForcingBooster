@@ -1,0 +1,15 @@
+id: wan21-14b
+family: wan21
+scale: 14B
+adapter: methods.Wan21.shared.adapter:Wan21Adapter
+capabilities:
+  - tf
+  - cd
+  - dmd
+  - adaptive_dmd
+  - router
+defaults:
+  runtime: global_fsdp
+  temporal_mode: chunkwise
+  num_frame_per_block: 3
+  model_name: Wan2.1-T2V-14B

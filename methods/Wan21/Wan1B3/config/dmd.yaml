@@ -1,0 +1,37 @@
+schema_version: 1
+model_id: wan21-1b3
+stage: dmd
+temporal_mode: chunkwise
+roles:
+  generator: wan21-1b3
+  real_teacher: wan21-14b
+  fake_score: wan21-1b3
+  ema_teacher: wan21-1b3
+data:
+  format: prompt_file
+  source: null
+weights:
+  model: https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B
+  teacher: https://huggingface.co/Wan-AI/Wan2.1-T2V-14B
+  init: outputs/wan21-1b3/cd/latest
+  checkpoint: null
+artifacts:
+  parent_stage: cd
+  output_dir: outputs/wan21-1b3/dmd
+  save_full_generator: true
+params:
+  num_frame_per_block: 3
+  num_training_frames: 21
+  num_train_timesteps: 1000
+  timestep_shift: 5.0
+  denoising_steps: [1000, 750, 500, 250]
+  warp_denoising_steps: true
+  guidance_scale: 3.0
+  distribution_loss: dmd
+  generator_learning_rate: 2.0e-6
+  critic_learning_rate: 4.0e-7
+  fake_score_updates_per_generator: 5
+  batch_size: 1
+  total_batch_size: 8
+  ema_decay: 0.99
+  max_train_steps: 5000

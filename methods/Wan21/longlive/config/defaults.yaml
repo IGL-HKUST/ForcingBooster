@@ -1,0 +1,40 @@
+weights:
+  model: https://huggingface.co/Efficient-Large-Model/LongLive-1.3B
+  assets: https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B
+  init: null
+  checkpoint: null
+merged_checkpoint: outputs/longlive/prepared/merged.pt
+resume: null
+device: cuda:0
+seed: 0
+mode: native
+weight_mode: merged
+height: 480
+width: 832
+fps: 16
+num_output_frames: 21
+num_frame_per_block: 3
+local_attn_size: 12
+sink_size: 3
+global_sink: true
+timestep_shift: 5.0
+denoising_steps: [1000, 750, 500, 250]
+context_noise: 0
+prompts:
+  - A red fox walks through a snowy pine forest, cinematic natural light, smooth camera motion.
+switch_frame_indices: []
+prompt_file: null
+output_dir: logs/longlive_inference
+save_latents: true
+decode: true
+forced_exit_step: null
+exit_threshold: 0.5
+num_training_frames: 21
+head_dim: 2048
+initial_exit_bias: -2.0
+learning_rate: 0.0001
+nfe_weight: 0.03
+max_updates: 20
+save_every: 10
+max_attempts: 200
+train_chunk_choices: [1, 2, 3, 4, 5, 6]

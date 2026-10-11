@@ -1,0 +1,12 @@
+runtime:
+  launcher: torchrun
+  backend: nccl
+  sharding_strategy: full
+  mixed_precision: bf16
+  gradient_checkpointing: true
+  seed: 0
+  fsdp:
+    enabled: true
+    use_orig_params: true
+    cpu_offload: false
+    wrap_strategy: size

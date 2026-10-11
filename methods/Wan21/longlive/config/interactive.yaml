@@ -1,0 +1,9 @@
+mode: native
+num_output_frames: 240
+switch_frame_indices: [60, 120, 180]
+prompts:
+  - A red fox walks through a snowy pine forest, cinematic natural light, smooth camera motion.
+  - The same red fox in the snowy pine forest stops and looks toward the camera, cinematic natural light.
+  - The same red fox in the snowy pine forest jumps over a fallen branch, cinematic natural light.
+  - The same red fox in the snowy pine forest continues walking between the trees, cinematic natural light.
+output_dir: logs/longlive_interactive

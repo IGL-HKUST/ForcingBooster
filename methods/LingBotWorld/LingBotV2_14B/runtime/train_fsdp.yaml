@@ -1,0 +1,25 @@
+runtime:
+  launcher: torchrun
+  pod: train
+  backend: nccl
+  required_world_size: 8
+  mixed_precision: bf16
+  gradient_checkpointing: false
+  seed: 42
+  no_ulysses: true
+  conditioning_mode: per_rank_local
+  same_sample_across_ranks: false
+  fsdp:
+    enabled: true
+    sharding_strategy: full
+    wrap_strategy: transformer_block
+    use_orig_params: true
+    cpu_offload: false
+    limit_all_gathers: true
+    backward_prefetch: backward_pre
+    sync_module_states: true
+    param_dtype: bf16
+    reduce_dtype: fp32
+    buffer_dtype: fp32
+  wandb:
+    enabled: false

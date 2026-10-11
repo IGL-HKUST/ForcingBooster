@@ -1,0 +1,73 @@
+model_id: lingbot-world-v2-14b-fast
+stage: router
+temporal_mode: chunkwise
+weights:
+  model: https://huggingface.co/robbyant/lingbot-world-v2-14b-causal-fast
+  init: null
+  checkpoint: null
+model:
+  architecture:
+    model_type: i2v
+    patch_size: [1, 2, 2]
+    text_len: 512
+    in_dim: 36
+    dim: 5120
+    ffn_dim: 13824
+    freq_dim: 256
+    text_dim: 4096
+    out_dim: 16
+    num_heads: 40
+    num_layers: 40
+    qk_norm: true
+    cross_attn_norm: true
+    eps: 1.0e-6
+    control_dim: 6
+    camera_spatial_stride: [8, 8]
+runtime:
+  launcher: torchrun
+  pod: train
+  backend: nccl
+  required_world_size: 8
+  mixed_precision: bf16
+  gradient_checkpointing: false
+  seed: 42
+  no_ulysses: true
+  conditioning_mode: per_rank_local
+  same_sample_across_ranks: false
+  fsdp:
+    enabled: true
+    sharding_strategy: full
+    wrap_strategy: transformer_block
+    use_orig_params: true
+    cpu_offload: false
+    limit_all_gathers: true
+    backward_prefetch: backward_pre
+    sync_module_states: true
+    param_dtype: bf16
+    reduce_dtype: fp32
+    buffer_dtype: fp32
+  wandb:
+    enabled: false
+data:
+  format: lingbot_world_v2_examples
+  source: assets/lingbot-world-v2
+  validation_source: assets/lingbot-world-v2
+artifacts:
+  parent_stage: adaptive_dmd
+  output_dir: logs/lingbot-world-v2-14b/baseline
+  inference_output_dir: logs/lingbot-world-v2-14b/baseline/inference
+  save_full_generator: true
+params:
+  mode: baseline
+  inference_mode: fixed4
+  num_frame_per_block: 4
+  inference_num_pixel_frames: 77
+  image_size: [480, 832]
+  latent_size: [60, 104]
+  scheduler_shift: 10.0
+  num_train_timesteps: 1000
+  timestep_indices: [0, 250, 500, 750]
+  local_attn_size: 18
+  sink_size: 6
+  first_chunk_step: 4
+  seed: 42

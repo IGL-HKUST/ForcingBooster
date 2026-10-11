@@ -1,0 +1,2 @@
+# Additional dependency for official LongLive LoRA loading.
+peft==0.17.0

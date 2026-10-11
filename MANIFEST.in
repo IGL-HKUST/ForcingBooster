@@ -1,0 +1,2 @@
+recursive-include methods/Wan21 *.md *.sh *.yaml
+recursive-include methods/LingBotWorld *.md *.sh *.txt *.yaml

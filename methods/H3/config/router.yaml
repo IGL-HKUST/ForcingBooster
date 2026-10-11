@@ -1,0 +1,3 @@
+mode: router
+output_dir: logs/h3/router
+

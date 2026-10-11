@@ -1,0 +1,8 @@
+mode: router
+output_dir: logs/longlive_router_train
+max_updates: 20
+save_every: 10
+train_prompts:
+  - A red fox walks through a snowy pine forest, cinematic natural light, smooth camera motion.
+  - A small wooden boat floats across a calm lake surrounded by mountains, gentle ripples, natural light.
+  - A woman wearing a yellow jacket walks along a coastal path, ocean waves in the background.

@@ -1,0 +1,13 @@
+runtime:
+  launcher: torchrun
+  backend: nccl
+  required_world_size: 1
+  mixed_precision: bf16
+  gradient_checkpointing: false
+  no_ulysses: true
+  ulysses_size: 1
+  conditioning_mode: per_rank_local
+  same_sample_across_ranks: false
+  inference_cpu_offload: true
+  fsdp:
+    enabled: false

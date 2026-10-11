@@ -1,0 +1,15 @@
+id: wan21-1b3
+family: wan21
+scale: 1.3B
+adapter: methods.Wan21.shared.adapter:Wan21Adapter
+capabilities:
+  - tf
+  - cd
+  - dmd
+  - adaptive_dmd
+  - router
+defaults:
+  runtime: default
+  temporal_mode: chunkwise
+  num_frame_per_block: 3
+  model_name: Wan2.1-T2V-1.3B

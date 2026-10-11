@@ -1,0 +1,33 @@
+schema_version: 1
+model_id: wan21-14b
+stage: cd
+temporal_mode: chunkwise
+roles:
+  generator: wan21-14b
+  real_teacher: wan21-14b
+  ema_teacher: wan21-14b
+data:
+  format: latent_lmdb
+  source: null
+weights:
+  model: https://huggingface.co/Wan-AI/Wan2.1-T2V-14B
+  init: outputs/wan21-14b/tf/latest
+  checkpoint: null
+artifacts:
+  parent_stage: tf
+  output_dir: outputs/wan21-14b/cd
+  save_full_generator: true
+params:
+  num_frame_per_block: 3
+  num_training_frames: 21
+  num_train_timesteps: 1000
+  timestep_shift: 8.0
+  denoising_steps: [1000, 750, 500, 250]
+  warp_denoising_steps: true
+  discrete_cd_steps: 48
+  teacher_forcing: true
+  learning_rate: 2.0e-6
+  batch_size: 1
+  total_batch_size: 8
+  ema_decay: 0.99
+  max_train_steps: 5000

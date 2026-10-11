@@ -1,0 +1,36 @@
+schema_version: 1
+model_id: wan21-14b
+stage: router
+temporal_mode: chunkwise
+roles:
+  generator: wan21-14b
+data:
+  format: prompt_file
+  source: null
+weights:
+  model: https://huggingface.co/Wan-AI/Wan2.1-T2V-14B
+  init: outputs/wan21-14b/adaptive_dmd/latest
+  checkpoint: null
+artifacts:
+  parent_stage: adaptive_dmd
+  output_dir: outputs/wan21-14b/router
+  save_full_generator: true
+params:
+  num_frame_per_block: 3
+  num_training_frames: 21
+  num_train_timesteps: 1000
+  timestep_shift: 8.0
+  denoising_steps: [1000, 750, 500, 250]
+  warp_denoising_steps: true
+  nfe_weight: 0.03
+  exit_threshold: 0.5
+  initial_exit_bias: -2.0
+  first_chunk_step: 4
+  train_chunk_min: 1
+  train_chunk_max: 6
+  train_step_choices: [1, 2, 3]
+  head_dim: 2048
+  learning_rate: 1.0e-4
+  batch_size: 1
+  total_batch_size: 8
+  max_train_steps: 5000

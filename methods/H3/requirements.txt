@@ -1,0 +1,11 @@
+# Dedicated environment; torch/CUDA/flash-attn are supplied by the train image.
+diffusers==0.40.0
+transformers==5.12.1
+peft==0.20.0
+huggingface-hub==1.33.0
+safetensors==0.8.0
+tokenizers==0.22.2
+regex==2026.9.29
+omegaconf==2.3.0
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
