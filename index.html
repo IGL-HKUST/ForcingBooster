@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#167b69">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=94ab7f87956d">
-  <script src="assets/config/data.js?v=14cfd6c25c21" defer></script><script src="assets/config/camera-data.js?v=99ddee2f462d" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=6d6a4b2cf11e" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=074008fc943e">
+  <script src="assets/config/data.js?v=14cfd6c25c21" defer></script><script src="assets/config/camera-data.js?v=99ddee2f462d" defer></script><script src="assets/app.js?v=d565f01ef6c3" defer></script><script src="assets/config/hero-world-motion.js?v=8903299642e9" defer></script><script src="assets/hero.js?v=cbdd8b8dabdd" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -53,14 +53,11 @@
         </div>
         <div class="output-stage">
           <div class="stage-label">Patch-wise denoising</div>
-          <div class="hero-comparison" style="--split:50%">
-            <video id="hero-heatmap" muted playsinline loop preload="auto" poster="assets/exitmap/hero-heatmap.jpg?v=d25391309a77" aria-hidden="true"><source src="assets/exitmap/hero-alternating-heatmap.mp4?v=e0ccf7f206b5" type="video/mp4"></video>
-            <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=b83b5c6d0ed5" type="video/mp4"></video>
-            <span class="comparison-label preview-label" aria-hidden="true">Preview</span><span class="comparison-label heatmap-label" aria-hidden="true">exitmap</span>
-            <span class="comparison-divider" aria-hidden="true"><span class="comparison-handle">◀ ▶</span></span>
-            <input class="comparison-slider" type="range" min="0" max="100" value="50" step="1" aria-label="Drag to compare denoising preview and heatmap" aria-valuetext="Preview 50%, heatmap 50%">
+          <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=c22a736534e6" aria-label="Alternating climber and city walkthrough with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=714e1e5c3d8c" type="video/mp4"></video>
+          <div id="hero-region-captions" class="hero-region-captions" aria-hidden="true">
+            <p class="region-one"><strong>1 step</strong><span class="region-one-text">Stable background water and distant canyon.</span></p>
+            <p class="region-many"><strong>2–4 steps</strong><span class="region-many-text">Moving climber and detailed rock textures.</span></p>
           </div>
-          <div class="hero-step-legend" aria-label="Denoising steps"><span>Steps</span><span><i class="step1" aria-hidden="true"></i>1</span><span><i class="step2" aria-hidden="true"></i>2</span><span><i class="step3" aria-hidden="true"></i>3</span><span><i class="step4" aria-hidden="true"></i>4</span></div>
         </div>
       </div>
     </div>

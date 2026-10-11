@@ -3,11 +3,11 @@
   "exitMap": "ForcingBooster/logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/exit_maps/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .pt",
   "visualPatchGrouping": "2x2 actual patches; max exit in each group; 32x32 source pixels / 24x24 rendered pixels",
   "fps": 24,
-  "seconds": 22,
+  "seconds": 38,
   "sourceStartFrame": 9,
   "latentMapping": "(sourceFrame + 3) // 4",
   "effect": "Illustrative noise compositing driven by saved exit steps, not recorded intermediate denoising states. Slow patches retain noise until their exit.",
-  "loop": "0\u20139 climber; 9\u20139.4 prompt fades up/out; 9.4\u20139.9 controller slides in and world fades in; 9.9\u201311.4 initial world denoising; 11.4\u201320.34 world playback; 20.34\u201320.9 clean hold; 20.9\u201321.3 controller fades out; 21.3\u201321.8 prompt returns; repeat at 22s.",
+  "loop": "0\u20133.2 climber initial denoising; 3.2\u201311.2 frozen climber with green/red explanation; 11.2\u201317 climber playback; 17\u201317.9 transition to camera controls; 17.9\u201319.4 city initial denoising; 19.4\u201327.4 frozen city with green/red explanation; 27.4\u201336.9 city playback and clean hold; 36.9\u201337.8 return transition; repeat at 38s.",
   "worldModel": {
     "preview": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/official_02.mp4",
     "exitMap": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/exit_maps/official_02.pt",
@@ -17,17 +17,23 @@
     "fps": 16,
     "visualPatchGrouping": "2x2 maximum exit; bottom edge cropped to one patch (12 rendered pixels); original video aspect ratio preserved"
   },
-  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch, using the same exit-step-driven curve for initial denoising and later chunks. Climber 1.2\u20133.2s, city 9.9\u201311.4s.",
-  "heatmap": {
-    "video": "assets/exitmap/hero-alternating-heatmap.mp4",
-    "poster": "assets/exitmap/hero-heatmap.jpg",
-    "overlayOpacity": 0.48,
-    "palette": [
-      "#1f964e",
-      "#297ed3",
-      "#d58b17",
-      "#d74141"
+  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch; climber 1.2\u20133.2s, city 17.9\u201319.4s. Later chunks retain the same fade.",
+  "explanation": {
+    "holdSecondsPerExample": 8,
+    "climber": [
+      3.2,
+      11.2
     ],
-    "mapping": "Same source frames, 2x2 maximum-exit groups, latent mapping, and 22-second transitions as the denoising preview; overlaid on the corresponding clean frames."
+    "worldModel": [
+      19.4,
+      27.4
+    ],
+    "climberSourceFrame": 9,
+    "worldSourceFrame": 13,
+    "green": "1 denoising step (#1f964e)",
+    "red": "2\u20134 denoising steps (#d74141)",
+    "overlayOpacity": 0.48,
+    "fadeSeconds": 0.45,
+    "captionSource": "latex/sec/intro.tex, region-specific discussion of Fig. teaser"
   }
 }
