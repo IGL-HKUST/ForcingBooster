@@ -15,10 +15,21 @@
   for (const item of window.EXAMPLES || []) {
     const card = document.createElement('article');
     card.className = 'example'; card.id = item.id; card.setAttribute('aria-label', item.title);
-    card.innerHTML = `      <div class="video-pair">${['preview','overlay'].map(kind => `<figure><figcaption>${kind === 'preview' ? '<span>Preview</span>' : '<span>Denoising Schedule</span>' + stepLegend}</figcaption><video muted playsinline preload="none" poster="${item[kind+'Poster']}" data-src="${item[kind]}" aria-label="${item.title}: ${kind === 'preview' ? 'generated video' : 'denoising schedule'}"></video></figure>`).join('')}</div>
+    card.innerHTML = `<div class="example-comparison" style="--split:50%">
+        ${['preview','overlay'].map(kind => `<video class="comparison-${kind}" muted playsinline preload="none" poster="${item[kind+'Poster']}" data-src="${item[kind]}" aria-label="${item.title}: ${kind === 'preview' ? 'generated video' : 'denoising schedule'}"></video>`).join('')}
+        <span class="comparison-label preview-label">Preview</span><span class="comparison-label exitmap-label">exitmap</span>
+        <span class="comparison-divider" aria-hidden="true"><span>‹ ›</span></span>
+        <input class="comparison-slider" type="range" min="0" max="100" value="50" step="1" aria-label="Compare preview and exitmap for ${item.title}" aria-valuetext="50% preview, 50% exitmap">
+      </div><div class="comparison-legend">${stepLegend}</div>
       <div class="controls"><button class="play-toggle" type="button" aria-label="Play ${item.title}" aria-pressed="false">▶ Play</button><input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek ${item.title}"><span class="time">0:00 / 0:00</span><button class="restart" type="button" aria-label="Restart ${item.title}">↺ Restart</button></div>
       ${item.category === 'world' ? cameraMarkup : ''}<p class="media-status" role="status" hidden></p>`;
     document.querySelector(`[data-gallery="${item.category}"]`).append(card);
+    const comparison = card.querySelector('.example-comparison'), slider = card.querySelector('.comparison-slider');
+    slider.addEventListener('input', () => {
+      const value = Number(slider.value);
+      comparison.style.setProperty('--split', `${value}%`);
+      slider.setAttribute('aria-valuetext', `${value}% preview, ${100-value}% exitmap`);
+    });
     const videos = [...card.querySelectorAll('video')], [master, follower] = videos;
     const toggle = card.querySelector('.play-toggle'), seek = card.querySelector('.seek'), clock = card.querySelector('.time'), status = card.querySelector('.media-status');
     const motion = (window.CAMERA_MOTION || {})[item.id];
@@ -48,7 +59,7 @@
     });
     const tick = () => {
       if (!playing) return;
-      if (Math.abs(master.currentTime - follower.currentTime) > .09 && !follower.seeking) follower.currentTime = master.currentTime;
+      if (Math.abs(master.currentTime - follower.currentTime) > .05 && !follower.seeking) follower.currentTime = master.currentTime;
       if (master.currentTime >= duration() - .03) { setTime(0); videos.forEach(v => v.play().catch(pause)); }
       update(); frame = requestAnimationFrame(tick);
     };

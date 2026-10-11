@@ -6,7 +6,7 @@
   const typed = card.querySelector('.prompt-typed'), fullPrompt = typed.textContent;
   const cursor = card.querySelector('.typing-cursor');
   const textPanel = card.querySelector('.hero-text-panel'), cameraPanel = card.querySelector('.hero-camera-panel');
-  const captions = card.querySelector('.hero-region-captions'), oneText = captions.querySelector('.region-one-text'), manyText = captions.querySelector('.region-many-text');
+  const captions = card.querySelector('.hero-region-captions');
   const motion = window.HERO_WORLD_MOTION;
   const keys = [...cameraPanel.querySelectorAll('.camera-key')], dot = cameraPanel.querySelector('.stick-dot'), stem = cameraPanel.querySelector('.stick-stem');
   const svg = card.querySelector('.flow-line'), path = svg.querySelector('.flow-connection'), pattern = svg.querySelector('pattern');
@@ -31,16 +31,12 @@
   }
   function update() {
     const clock=video.currentTime;
-    const climberExplanation=clock>=3.2&&clock<11.2,worldExplanation=clock>=19.4&&clock<27.4;
+    const climberExplanation=clock>=3.2&&clock<6.2,worldExplanation=clock>=14.4&&clock<17.4;
     const explaining=climberExplanation||worldExplanation;
-    // Collapse each eight-second hold onto its completed first denoising frame.
-    const t=clock<3.2?clock:clock<11.2?3.2:clock<19.4?clock-8:clock<27.4?11.4:clock-16;
-    const elapsed=climberExplanation?clock-3.2:worldExplanation?clock-19.4:0;
-    const explanationAlpha=explaining?Math.min(ease(elapsed/.45),ease((8-elapsed)/.45)):0;
-    if(explaining){
-      oneText.textContent=worldExplanation?'Stable sky and large building surfaces.':'Stable background water and distant canyon.';
-      manyText.textContent=worldExplanation?'Trees and newly revealed structures.':'Moving climber and detailed rock textures.';
-    }
+    // Collapse each three-second hold onto its completed first denoising frame.
+    const t=clock<3.2?clock:clock<6.2?3.2:clock<14.4?clock-3:clock<17.4?11.4:clock-6;
+    const elapsed=climberExplanation?clock-3.2:worldExplanation?clock-14.4:0;
+    const explanationAlpha=explaining?Math.min(ease(elapsed/.45),ease((3-elapsed)/.45)):0;
     panel(captions,explanationAlpha,0);
     let textAlpha=0,textY=0,cameraAlpha=0,cameraY=0;
     if(t<9)textAlpha=1;

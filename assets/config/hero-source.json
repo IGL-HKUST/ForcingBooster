@@ -3,11 +3,11 @@
   "exitMap": "ForcingBooster/logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/exit_maps/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .pt",
   "visualPatchGrouping": "2x2 actual patches; max exit in each group; 32x32 source pixels / 24x24 rendered pixels",
   "fps": 24,
-  "seconds": 38,
+  "seconds": 28,
   "sourceStartFrame": 9,
   "latentMapping": "(sourceFrame + 3) // 4",
   "effect": "Illustrative noise compositing driven by saved exit steps, not recorded intermediate denoising states. Slow patches retain noise until their exit.",
-  "loop": "0\u20133.2 climber initial denoising; 3.2\u201311.2 frozen climber with green/red explanation; 11.2\u201317 climber playback; 17\u201317.9 transition to camera controls; 17.9\u201319.4 city initial denoising; 19.4\u201327.4 frozen city with green/red explanation; 27.4\u201336.9 city playback and clean hold; 36.9\u201337.8 return transition; repeat at 38s.",
+  "loop": "0\u20133.2 climber initial denoising; 3.2\u20136.2 frozen climber with green/red explanation; 6.2\u201312 climber playback; 12\u201312.9 transition to camera controls; 12.9\u201314.4 city initial denoising; 14.4\u201317.4 frozen city with green/red explanation; 17.4\u201326.9 city playback and clean hold; 26.9\u201327.8 return transition; repeat at 28s.",
   "worldModel": {
     "preview": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/official_02.mp4",
     "exitMap": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/exit_maps/official_02.pt",
@@ -17,16 +17,16 @@
     "fps": 16,
     "visualPatchGrouping": "2x2 maximum exit; bottom edge cropped to one patch (12 rendered pixels); original video aspect ratio preserved"
   },
-  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch; climber 1.2\u20133.2s, city 17.9\u201319.4s. Later chunks retain the same fade.",
+  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch; climber 1.2\u20133.2s, city 12.9\u201314.4s. Later chunks retain the same fade.",
   "explanation": {
-    "holdSecondsPerExample": 8,
+    "holdSecondsPerExample": 3,
     "climber": [
       3.2,
-      11.2
+      6.2
     ],
     "worldModel": [
-      19.4,
-      27.4
+      14.4,
+      17.4
     ],
     "climberSourceFrame": 9,
     "worldSourceFrame": 13,
