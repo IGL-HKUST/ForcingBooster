@@ -2,7 +2,7 @@
 
 We introduce ForcingBooster, a general framework that dynamically allocates denoising steps to individual patches: easy patches stop early to improve efficiency, while difficult patches receive more refinement steps. This design accelerates generation with negligible quality degradation. Our method is compatible with most existing few-step autoregressive diffusion models, requiring only a lightweight routing module with modest training.
 
-[Project Page](https://igl-hkust.github.io/ForcingBooster)  |  [Checkpoints](https://huggingface.co/EXCAI/ForcingBooster)
+[Project Page](https://igl-hkust.github.io/ForcingBooster)  |  [Checkpoints](https://huggingface.co/EXCAI/ForcingBooster)  |  [arXiv](https://arxiv.org/abs/2610.12625)
 
 ## Setup
 
