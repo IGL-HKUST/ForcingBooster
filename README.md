@@ -1,5 +1,7 @@
 # ForcingBooster project page
 
+[arXiv](https://arxiv.org/abs/2610.12625)
+
 Static project page on the `page` branch. This branch contains the website only; model and training code remain on `main`.
 
 ## Preview
