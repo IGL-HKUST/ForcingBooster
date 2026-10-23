@@ -1,0 +1,90 @@
+SolarWM
+Copyright 2026 SolarWM Contributors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+--------------------------------------------------------------------------------
+Third-party source included in this repository
+--------------------------------------------------------------------------------
+
+  SolarRenderer (https://github.com/Enderfga/SolarRenderer), Apache-2.0
+    Copyright 2026 SolarRenderer authors.
+    Adapted from revision 5a5da36c2cc0b91c00bac85b906cbf7cad469e84 under
+    src/solarwm/renderer/, with shared observation-packing, attention, LoRA,
+    and selective-checkpointing support in the MiniMax-H3 backend.
+    The renderer examples, training configurations, and solarrenderer-caption
+    skill and helper scripts come from the same release.
+    MiniMax-H3 and SolarRenderer model weights are obtained separately and
+    remain subject to the MiniMax H3 Community License and Acceptable Use Policy.
+
+  Wan 2.2 (Alibaba Wan Team), Apache-2.0
+    Copyright 2024-2025 The Alibaba Wan Team Authors. All rights reserved.
+    Vendored under src/solarwm/backends/wan22/runtime/modeling/:
+      model.py, vae.py, t5.py, attention.py, tokenizers.py
+    causal_model.py is a MODIFIED derivative of the above, extending the Wan
+    architecture with causal attention and camera conditioning.
+    The Chinese negative prompts in the Wan example configs are Wan defaults.
+
+  PRoPE: Projective Positional Encoding for Multiview Transformers, MIT
+    Copyright (c) the PRoPE authors.
+    Vendored as src/solarwm/backends/wan22/runtime/modeling/camera_prope.py
+    (dual-licensed Apache-2.0 AND MIT) and adapted in the LTX and H3 backends
+    as torch_prope.py.
+
+Each vendored file keeps its upstream copyright header. Files modified by this
+project state so in their header.
+
+--------------------------------------------------------------------------------
+Backbones and weights
+--------------------------------------------------------------------------------
+
+Model weights and backbone packages are NOT distributed here and carry their own
+terms, several of which are not Apache-2.0. Obtain each from its publisher and
+check its licence before redistributing anything you produce:
+
+  Wan 2.2 TI2V-5B / I2V-A14B          LTX-2.5 (incl. the ltx-core packages)
+  MiniMax-H3                          the text encoders each backbone requires
+
+--------------------------------------------------------------------------------
+Data
+--------------------------------------------------------------------------------
+
+The corpus is produced by the SolarWM Data Engine and annotates public source
+datasets that are not redistributed here; each keeps its own terms, several of
+which are non-commercial. See the licence and citation registry distributed
+with SolarWM-Data.
+
+--------------------------------------------------------------------------------
+Modifications in this directory
+--------------------------------------------------------------------------------
+
+backbone/ holds SolarWM source files with only their import paths changed;
+backbone/decode.py is the decode_write function of full_inference.py, extended to
+write TAEHV output.
+router/attention.py adapts sgf_attention.py to sparse video queries.
+
+backbone/taehv.py is TAEHV (https://github.com/madebyollin/taehv), copied
+unchanged from commit 011dfc2112197741c540e0bdd5b7b67bcc930771; the taeh3
+decoder weights (weights.taeh3) come from the same commit. Its licence:
+
+    MIT License
+
+    Copyright (c) 2025 Ollin Boer Bohan
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.

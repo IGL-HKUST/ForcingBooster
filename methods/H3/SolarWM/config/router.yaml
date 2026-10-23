@@ -1,0 +1,5 @@
+variant: SolarWM
+mode: router
+output_dir: logs/h3/router
+weights:
+  checkpoint: https://huggingface.co/EXCAI/ForcingBooster

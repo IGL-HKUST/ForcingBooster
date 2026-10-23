@@ -17,6 +17,8 @@ pip install -e .
 Ten example inference prompts are included in [`assets/inference.txt`](assets/inference.txt), one prompt per line. For training, use [`vidprom_filtered_extended.txt` from Self-Forcing](https://huggingface.co/gdhe17/Self-Forcing/blob/main/vidprom_filtered_extended.txt), downloaded as described below. We evaluated our method on a Linux server equipped with 1TB of RAM and 8 NVIDIA A800 (80GB) GPUs.
 ## Inference
 
+[LingBot-World](methods/LingBotWorld/README.md)  |  [MiniMax-H3 (SolarWM)](methods/H3/README.md)
+
 We use Causal-Forcing checkpoint as example. The Wan 1.3B router configuration defaults to the released [ForcingBooster](https://huggingface.co/EXCAI/ForcingBooster) checkpoint and [Wan base components](https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B). Other checkpoints will be released to our [HuggingFace](https://huggingface.co/EXCAI/ForcingBooster) repo.
 
 ```bash
@@ -35,13 +37,21 @@ Other methods use the same source fields:
 | Wan 1.3B / 14B | `Wan-AI/Wan2.1-T2V-1.3B` | [ForcingBooster-Wan](https://huggingface.co/EXCAI/ForcingBooster/tree/main/Causal-Forcing) |
 | LingBot  14B |  `robbyant/lingbot-world-v2-14b-causal-fast` | [ForcingBooster-LingBot](https://huggingface.co/EXCAI/ForcingBooster) |
 | LongLive | `Efficient-Large-Model/LongLive-1.3B` | To be released |
-| H3 | `junchaoh-cs/SolarWM-H3-33B` | To be released |
+| H3 | `junchaoh-cs/SolarWM-H3-33B` (`weights.base`, `weights.stage2`) | [ForcingBooster-H3](https://huggingface.co/EXCAI/ForcingBooster/tree/main/MiniMax-H3) |
 
-LingBot 14B router inference defaults to `LingBot-World/model.pt` from ForcingBooster. LongLive and H3 routers also require explicit checkpoints.
+LingBot 14B and H3 router inference default to `LingBot-World/model.pt` and `MiniMax-H3/model.pt` from ForcingBooster. LongLive routers require explicit checkpoints.
 ```bash
-bash methods/LingBotWorld/LingBotV2_14B/scripts/infer.sh \
+torchrun --standalone --nproc-per-node=8 -m methods.LingBotWorld.cli infer \
+  --config methods/LingBotWorld/LingBotV2_14B/config/router.yaml \
   --set weights.model=ckpts/my-lingbot-download
 ```
+
+H3 (SolarWM, 33B) needs the packages in `methods/H3/SolarWM/requirements.txt` and eight GPUs. Its weights repository is gated: accept its terms and run `hf auth login` first. `prepare` downloads every weight file and encodes the LingBot examples in `assets/lingbot-world-v2/examples` on one GPU; `infer` then reads them offline. Pass the same `--set` overrides to both.
+```bash
+bash methods/H3/SolarWM/scripts/prepare.sh
+bash methods/H3/SolarWM/scripts/infer.sh
+```
+Append `--set mode=native` for the original four-step model, or `--set forced_exit_step=K` to stop every patch after step K. Videos, latents and exit maps are written to `logs/h3/router/<sample>/`.
 
 ## Training
 

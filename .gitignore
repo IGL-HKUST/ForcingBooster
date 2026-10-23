@@ -22,7 +22,6 @@ htmlcov/
 /checkpoints
 /prompts
 /tests/
-/assets/lingbot-world-v2
 
 # Local prompt corpora and historical experiment assets. Tracked examples remain
 # available, while canonical config/scripts now live below methods/**.
@@ -36,5 +35,7 @@ htmlcov/
 /latex/
 /artifacts/
 
-# Method documentation stays local.
+# Method documentation stays local, except the READMEs linked from README.md.
 /methods/**/*.md
+!/methods/LingBotWorld/README.md
+!/methods/H3/README.md

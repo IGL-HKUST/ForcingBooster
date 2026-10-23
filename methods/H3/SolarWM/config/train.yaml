@@ -1,0 +1,7 @@
+variant: SolarWM
+mode: router
+conditions_dir: logs/h3/prepared/conditions
+silence_file: logs/h3/prepared/silence.safetensors
+output_dir: logs/h3/train
+train:
+  split: train
