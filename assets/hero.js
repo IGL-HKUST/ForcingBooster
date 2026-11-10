@@ -53,7 +53,8 @@
     card.dataset.phase=explaining?'explaining':t<1.2||(t>=9.4&&t<11.4)?'routing':'denoising';
     pattern.setAttribute('patternTransform',`translate(${(t*24)%12} 0) rotate(45)`);
     if(motion){
-      const pos=Math.min(156,13+Math.max(0,t-11.4)*16),i=Math.floor(pos),j=Math.min(156,i+1),f=pos-i;
+      // start frame and playback rate come from hero-world-motion.js (the video plays the source from `start` at `rate` frames/s)
+      const last=motion.keys.length-1,pos=Math.min(last,(motion.start??13)+Math.max(0,t-11.4)*(motion.rate||16)),i=Math.floor(pos),j=Math.min(last,i+1),f=pos-i;
       keys.forEach((key,k)=>key.classList.toggle('active',Boolean(motion.keys[i][k])));
       const x=181+21*(motion.stick[i][0]*(1-f)+motion.stick[j][0]*f),y=43+21*(motion.stick[i][1]*(1-f)+motion.stick[j][1]*f);
       dot.setAttribute('cx',x);dot.setAttribute('cy',y);stem.setAttribute('x2',x);stem.setAttribute('y2',y);

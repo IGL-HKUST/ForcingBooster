@@ -5,19 +5,23 @@
   "fps": 24,
   "seconds": 28,
   "sourceStartFrame": 9,
+  "playbackRate": 16,
+  "cycleLatents": 3,
   "latentMapping": "(sourceFrame + 3) // 4",
   "effect": "Illustrative noise compositing driven by saved exit steps, not recorded intermediate denoising states. Slow patches retain noise until their exit.",
-  "loop": "0\u20133.2 climber initial denoising; 3.2\u20136.2 frozen climber with green/red explanation; 6.2\u201312 climber playback; 12\u201312.9 transition to camera controls; 12.9\u201314.4 city initial denoising; 14.4\u201317.4 frozen city with green/red explanation; 17.4\u201326.9 city playback and clean hold; 26.9\u201327.8 return transition; repeat at 28s.",
   "worldModel": {
-    "preview": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/official_02.mp4",
-    "exitMap": "logs/0809_lingbot14B_patch-router/validation/checkpoint_step_001000/router/exit_maps/official_02.pt",
-    "poseSource": "assets/lingbot-world-v2/examples/02/poses.npy",
-    "keySource": "assets/lingbot-world-v2/examples/02/wasd_action.npy",
-    "startFrame": 13,
-    "fps": 16,
-    "visualPatchGrouping": "2x2 maximum exit; bottom edge cropped to one patch (12 rendered pixels); original video aspect ratio preserved"
+    "example": "lw-studio-back-pan-right",
+    "preview": "logs/1107_solarWM_teaser/results/lingbot_router/studio_back_pan_right/video.mp4",
+    "exitMap": "logs/1107_solarWM_teaser/results/lingbot_router/studio_back_pan_right/exit_steps.pt",
+    "startFrame": 55,
+    "sourceFps": 24,
+    "playbackRate": 16,
+    "chunkLatents": 4,
+    "cameraControls": "assets/config/hero-world-motion.js (from camera-data.js, lw-studio-back-pan-right)",
+    "framing": "832x464 scaled to 646x360 and centre-cropped to 624x360 (crop x = 11); exit map scaled and cropped identically; no white bars",
+    "visualPatchGrouping": "2x2 maximum exit (about 25x25 rendered pixels per group)"
   },
-  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch; climber 1.2\u20133.2s, city 12.9\u201314.4s. Later chunks retain the same fade.",
+  "initialDenoising": "Uniform opacity fade within each 2x2 visual patch group; climber 1.2–3.2 s on frame 9, studio 12.9–14.4 s on frame 55. Later chunks retain the same fade.",
   "explanation": {
     "holdSecondsPerExample": 3,
     "climber": [
@@ -29,11 +33,12 @@
       17.4
     ],
     "climberSourceFrame": 9,
-    "worldSourceFrame": 13,
+    "worldSourceFrame": 55,
     "green": "1 denoising step (#1f964e)",
-    "red": "2\u20134 denoising steps (#d74141)",
+    "red": "2–4 denoising steps (#d74141)",
     "overlayOpacity": 0.48,
-    "fadeSeconds": 0.45,
-    "captionSource": "latex/sec/intro.tex, region-specific discussion of Fig. teaser"
-  }
+    "fadeSeconds": 0.45
+  },
+  "loop": "0–3.2 climber initial denoising; 3.2–6.2 frozen climber with green/red explanation; 6.2–12 climber playback; 12–12.9 transition to camera controls; 12.9–14.4 studio initial denoising; 14.4–17.4 frozen studio with green/red explanation; 17.4–26.9 studio playback (16 frames/s) and clean hold; 26.9–27.8 return transition; repeat at 28 s.",
+  "renderScript": "artifacts/page-tooling/render_hero_v2.py (adapted from render_hero_explanations.py)"
 }

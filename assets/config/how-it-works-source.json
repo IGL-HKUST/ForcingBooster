@@ -1,0 +1,72 @@
+{
+  "summary": "How it works: four clips played in rotation. Rendered with the scripts below (Codex sessions, Oct 2026), remuxed without re-encoding.",
+  "canvas": [
+    1600,
+    1200
+  ],
+  "fps": 30,
+  "clips": [
+    {
+      "n": 1,
+      "title": "Existing methods update all patches with the same steps",
+      "materials": [
+        "outputs/teaservid/0729-example2-framewise-last2/last2_generated_16fps.mp4",
+        "outputs/teaservid/0729-example2-framewise-last2/router_maps.npz"
+      ],
+      "page_video": "assets/videos/how-it-works-1.mp4",
+      "frames": 327,
+      "source_video": "artifacts/world_model_explainer/forcingbooster_section1_denoising_v41.mp4",
+      "render_script": "artifacts/world_model_explainer/render_section1_v41.py",
+      "provenance": "artifacts/world_model_explainer/provenance_v41.json",
+      "sha256": "9761a9ef8df152fe95f191b787106ef31641d883d21ecf41b7296d95e529029f",
+      "copy_in_pipeline_videos": "pipeline-videos/forcingbooster_1.mp4"
+    },
+    {
+      "n": 2,
+      "title": "Train only a lightweight router to decide when each patch is done",
+      "materials": [
+        "logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .mp4",
+        "logs/0807_causvid14b_patch-router_4steps/validation/current_seed0/exit_maps/Along a canyon rim at sunrise, a climber in a burnt-orange jacket, chalky hands, and a braided rope .pt"
+      ],
+      "page_video": "assets/videos/how-it-works-2.mp4",
+      "frames": 443,
+      "source_video": "artifacts/world_model_explainer/forcingbooster_nfe_patch_grid_v36.mp4",
+      "render_script": "artifacts/world_model_explainer/render_no_booster_block.py",
+      "provenance": "artifacts/world_model_explainer/provenance_v36.json",
+      "sha256": "fb1cae3070e05eb106d3eba6bb0fe73c0bb7a69f318fc33bd9ca062bed7c341e",
+      "copy_in_pipeline_videos": "pipeline-videos/forcingbooster_2.mp4 (truncated at 2,162,688 of 2,284,689 bytes; last 24 frames missing)"
+    },
+    {
+      "n": 3,
+      "title": "Interactive video generation and video world models",
+      "materials": [
+        "outputs/teaservid/0729-dynamic50-train4/videos/007_cat-runs-through-snow.mp4",
+        "outputs/teaservid/0729-dynamic50-train4/exit_maps/007_cat-runs-through-snow.npz",
+        "outputs/teaservid/1015_lingbot_camera30_pause_resume/denoise_videos/10.mp4",
+        "outputs/teaservid/1015_lingbot_camera30_pause_resume/10.mp4"
+      ],
+      "page_video": "assets/videos/how-it-works-3.mp4",
+      "frames": 204,
+      "source_video": "artifacts/world_model_explainer/forcingbooster_section3_adaptive_start_v39.mp4",
+      "render_script": "artifacts/world_model_explainer/render_section3_v39.py",
+      "provenance": "artifacts/world_model_explainer/provenance_v39.json",
+      "sha256": "db9c362de8f5cc76df19850608bf9edb9844992113099a8ccac1e4fbee83f891",
+      "copy_in_pipeline_videos": "pipeline-videos/forcingbooster_3.mp4"
+    },
+    {
+      "n": 4,
+      "title": "Less computation. Faster generation.",
+      "materials": [
+        "outputs/teaservid/1015_lingbot_camera30_pause_resume/10.mp4 (blurred background only)"
+      ],
+      "page_video": "assets/videos/how-it-works-4.mp4",
+      "frames": 258,
+      "source_video": "artifacts/world_model_explainer/forcingbooster_section4_efficiency_v40.mp4",
+      "render_script": "artifacts/world_model_explainer/render_section4_v40.py",
+      "provenance": "artifacts/world_model_explainer/provenance_v40.json",
+      "sha256": "29e116e9055c90746a76d40d5c5eaea7563c179af89db7e8b37f2fcc05a679d8",
+      "copy_in_pipeline_videos": "pipeline-videos/forcingbooster_4.mp4",
+      "note": "Numbers shown: ~50% fewer patch denoising steps, 1.76x denoising and 1.31x end-to-end speedup over the four-step baseline (user-supplied averages per provenance_v40.json; the paper reports a 2.01x NFE speedup and 1.30x end to end for Causal Forcing 1.3B)."
+    }
+  ]
+}
