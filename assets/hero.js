@@ -6,26 +6,25 @@
   const typed = card.querySelector('.prompt-typed'), fullPrompt = typed.textContent;
   const cursor = card.querySelector('.typing-cursor');
   const textPanel = card.querySelector('.hero-text-panel'), cameraPanel = card.querySelector('.hero-camera-panel');
-  const captions = card.querySelector('.hero-region-captions');
+  const captions = card.querySelector('.hero-region-captions'), outputLabel = card.querySelector('.output-head .stage-label');
+  const existing = card.querySelector('.existing-module'), router = card.querySelector('.router-module'), input = card.querySelector('.input-window');
   const motion = window.HERO_WORLD_MOTION;
   const keys = [...cameraPanel.querySelectorAll('.camera-key')], dot = cameraPanel.querySelector('.stick-dot'), stem = cameraPanel.querySelector('.stick-stem');
   const svg = card.querySelector('.flow-line'), path = svg.querySelector('.flow-connection'), pattern = svg.querySelector('pattern');
   let visible = false, raf = 0;
   const ease = x => {x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
+  // The card is stacked bottom to top (input → Existing Method → Router → video). One centred arrow runs up
+  // through the gaps between them and ends with its tip on the bottom edge of the video.
   function placeLine() {
-    const box = flow.getBoundingClientRect(), input = card.querySelector('.input-window').getBoundingClientRect(), output = video.getBoundingClientRect();
+    const box = flow.getBoundingClientRect(), y = v => v - box.top;
+    const from = input.getBoundingClientRect(), a = existing.getBoundingClientRect(), b = router.getBoundingClientRect(), output = video.getBoundingClientRect();
     svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
-    if(window.innerWidth>900){
-      const y=(input.top+input.bottom)/2-box.top;
-      path.setAttribute('d',`M ${input.right-box.left} ${y} L ${output.left-box.left-2} ${y}`);
-    }else{
-      const x=input.left-box.left+8;
-      path.setAttribute('d',`M ${x} ${input.bottom-box.top} L ${x} ${output.top-box.top-2}`);
-    }
+    const x=(output.left+output.right)/2-box.left;
+    path.setAttribute('d',`M ${x} ${y(from.top)} L ${x} ${y(a.bottom)} M ${x} ${y(a.top)} L ${x} ${y(b.bottom)} M ${x} ${y(b.top)} L ${x} ${y(output.bottom)+2}`);
   }
   function panel(element,opacity,offset){
     element.style.opacity=opacity;
-    element.style.transform=`translateY(${offset}px)`;
+    element.style.transform=`translateX(${offset}px)`;
     element.style.visibility=opacity>0?'visible':'hidden';
     element.setAttribute('aria-hidden',String(opacity===0));
   }
@@ -38,20 +37,24 @@
     const elapsed=climberExplanation?clock-3.2:worldExplanation?clock-14.4:0;
     const explanationAlpha=explaining?Math.min(ease(elapsed/.45),ease((3-elapsed)/.45)):0;
     panel(captions,explanationAlpha,0);
-    let textAlpha=0,textY=0,cameraAlpha=0,cameraY=0;
+    if(outputLabel)outputLabel.style.opacity=1-explanationAlpha;
+    // Input panels switch horizontally: the outgoing panel slides out to the left, the incoming one enters from the right.
+    const shift=48;
+    let textAlpha=0,textX=0,cameraAlpha=0,cameraX=0;
     if(t<9)textAlpha=1;
-    else if(t<9.4){const u=ease((t-9)/.4);textAlpha=1-u;textY=-28*u;}
-    else if(t<9.9){const u=ease((t-9.4)/.5);cameraAlpha=u;cameraY=28*(1-u);}
+    else if(t<9.4){const u=ease((t-9)/.4);textAlpha=1-u;textX=-shift*u;}
+    else if(t<9.9){const u=ease((t-9.4)/.5);cameraAlpha=u;cameraX=shift*(1-u);}
     else if(t<20.9)cameraAlpha=1;
-    else if(t<21.3){const u=ease((t-20.9)/.4);cameraAlpha=1-u;cameraY=-28*u;}
-    else{const u=ease((t-21.3)/.5);textAlpha=u;textY=28*(1-u);}
-    panel(textPanel,textAlpha,textY);panel(cameraPanel,cameraAlpha,cameraY);
+    else if(t<21.3){const u=ease((t-20.9)/.4);cameraAlpha=1-u;cameraX=-shift*u;}
+    else{const u=ease((t-21.3)/.5);textAlpha=u;textX=shift*(1-u);}
+    panel(textPanel,textAlpha,textX);panel(cameraPanel,cameraAlpha,cameraX);
     const textTime=t<9.4?t:0;
     typed.textContent=fullPrompt.slice(0,Math.min(fullPrompt.length,Math.floor(Math.max(0,textTime-.1)/.85*fullPrompt.length)));
     cursor.style.visibility=textTime<1.15?'visible':'hidden';
     card.dataset.example=t>=9.4&&t<21.3?'world':'video';
     card.dataset.phase=explaining?'explaining':t<1.2||(t>=9.4&&t<11.4)?'routing':'denoising';
-    pattern.setAttribute('patternTransform',`translate(${(t*24)%12} 0) rotate(45)`);
+    // negative x shift moves the 45° stripes upward along the vertical arrow (towards the video)
+    pattern.setAttribute('patternTransform',`translate(${-((t*24)%12)} 0) rotate(45)`);
     if(motion){
       // start frame and playback rate come from hero-world-motion.js (the video plays the source from `start` at `rate` frames/s)
       const last=motion.keys.length-1,pos=Math.min(last,(motion.start??13)+Math.max(0,t-11.4)*(motion.rate||16)),i=Math.floor(pos),j=Math.min(last,i+1),f=pos-i;

@@ -22,7 +22,7 @@
   });
   links.addEventListener('click', e => { if (e.target.closest('a')) { toggle.setAttribute('aria-expanded', 'false'); links.classList.remove('is-open'); } });
 
-  // each link lists the section ids it covers (Demo covers both galleries)
+  // each link lists the section ids it covers (Demo holds both galleries)
   const navLinks = $$('a', links);
   const covers = a => (a.dataset.sections || a.hash.slice(1)).split(/\s+/);
   const sectionSpy = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -140,6 +140,8 @@
   function buildPlayer(root) {
     const category = root.dataset.category;
     const items = EXAMPLES.filter(x => x.category === category);
+    const count = root.closest('.demo-group')?.querySelector('.demo-count');
+    if (count) count.textContent = `${items.length} examples`;
     if (!items.length) return;
     root.innerHTML = `
       <div class="player-main">
@@ -164,7 +166,7 @@
         </div>
       </div>
       <div class="details">
-        <div class="details-head"><h3 class="details-title"></h3><span class="details-kicker"></span></div>
+        <div class="details-head"><h4 class="details-title"></h4><span class="details-kicker"></span></div>
         <div class="details-body">
           <div class="ex-prompt">
             <p class="ex-label">Prompt</p>

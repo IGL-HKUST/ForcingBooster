@@ -61,12 +61,13 @@
       ],
       "page_video": "assets/videos/how-it-works-4.mp4",
       "frames": 258,
-      "source_video": "artifacts/world_model_explainer/forcingbooster_section4_efficiency_v40.mp4",
-      "render_script": "artifacts/world_model_explainer/render_section4_v40.py",
-      "provenance": "artifacts/world_model_explainer/provenance_v40.json",
-      "sha256": "29e116e9055c90746a76d40d5c5eaea7563c179af89db7e8b37f2fcc05a679d8",
-      "copy_in_pipeline_videos": "pipeline-videos/forcingbooster_4.mp4",
-      "note": "Numbers shown: ~50% fewer patch denoising steps, 1.76x denoising and 1.31x end-to-end speedup over the four-step baseline (user-supplied averages per provenance_v40.json; the paper reports a 2.01x NFE speedup and 1.30x end to end for Causal Forcing 1.3B)."
+      "source_video": "Documents/Codex/2026-11-22/page-howitwork/outputs/forcingbooster_section4_efficiency_v41.mp4",
+      "previous_source_video": "artifacts/world_model_explainer/forcingbooster_section4_efficiency_v40.mp4",
+      "previous_render_script": "artifacts/world_model_explainer/render_section4_v40.py",
+      "previous_provenance": "artifacts/world_model_explainer/provenance_v40.json",
+      "sha256": "ae392fab794f1c6db36a2126e3c310f0121b86a16ec7f5c17e06fda89763a29f",
+      "previous_copy_in_pipeline_videos": "pipeline-videos/forcingbooster_4.mp4",
+      "note": "v41 (2026-11-22) replaces v40; copied byte for byte. Numbers shown: ~50% fewer patch denoising steps, 1.68x denoising speedup (bar 59.5%) and 1.31x end-to-end speedup over the four-step baseline; only the middle figure changed from v40 (was 1.76x, bar 56.8%). 1.68x matches the generator speedup of Causal Forcing 1.3B in latex/sec/exp.tex. Poster: frame at 5.0 s, scaled to 1200x900. No render script is stored next to the v41 output."
     }
   ]
 }

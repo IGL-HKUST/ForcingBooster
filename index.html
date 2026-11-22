@@ -6,13 +6,13 @@
   <meta name="theme-color" content="#fbfbfd">
   <title>ForcingBooster — Adaptive Patch-wise Video Denoising</title>
   <link rel="icon" href="assets/favicon.svg?v=6b72126a2b8c" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css?v=b8d66056d75f">
+  <link rel="stylesheet" href="assets/style.css?v=9f0926aa2ca5">
   <script>document.documentElement.classList.add('js');</script>
   <script src="assets/config/data.js?v=bb27a1291939" defer></script>
   <script src="assets/config/camera-data.js?v=c5bb48e55946" defer></script>
-  <script src="assets/app.js?v=265372dd717c" defer></script>
+  <script src="assets/app.js?v=5a3a618a3959" defer></script>
   <script src="assets/config/hero-world-motion.js?v=103d0d36c417" defer></script>
-  <script src="assets/hero.js?v=5772350bd9ea" defer></script>
+  <script src="assets/hero.js?v=4d79d068d608" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -23,7 +23,7 @@
     <nav class="nav-links" id="nav-links" aria-label="Main navigation">
       <a href="#overview" data-sections="top abstract">Overview</a>
       <a href="#how-it-works" data-sections="how-it-works">How it works</a>
-      <a href="#interactive" data-sections="interactive world">Demo</a>
+      <a href="#demo" data-sections="demo">Demo</a>
     </nav>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Show sections"><span></span><span></span></button>
   </div>
@@ -44,15 +44,16 @@
         <p><sup>3</sup>VAST</p>
       </div>
       <div class="hero-actions reveal">
-        <a class="pill pill-primary" href="#interactive">Explore the results</a>
+        <a class="pill pill-primary" href="#demo">Explore the results</a>
         <a class="pill pill-secondary" href="#how-it-works">How it works</a>
+        <span class="actions-break" aria-hidden="true"></span>
         <a class="pill pill-secondary" href="https://github.com/IGL-HKUST/ForcingBooster/tree/main">Code</a>
         <a class="pill pill-secondary" href="https://huggingface.co/EXCAI/ForcingBooster">Checkpoints</a>
         <a class="pill pill-secondary" href="https://arxiv.org/abs/2610.12625">arXiv</a>
       </div>
     </div>
 
-    <div class="method-card reveal is-paused" id="overview" aria-describedby="overview-caption" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
+    <div class="method-card reveal is-paused" id="overview" aria-label="Animated overview alternating text-conditioned video generation and camera-controlled world modeling">
       <div class="method-flow">
         <svg class="flow-line" aria-hidden="true"><defs><pattern id="flow-ink" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="flow-ink-base" width="12" height="12"/><rect class="flow-ink-stripe" width="6" height="12"/></pattern><marker id="flow-tip" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path class="flow-tip" d="M0 0L6 3L0 6Z"/></marker></defs><path class="flow-connection" fill="none" stroke="url(#flow-ink)" stroke-width="3" marker-end="url(#flow-tip)"/></svg>
         <div class="prompt-stage input-window">
@@ -80,34 +81,17 @@
           <div class="router-module"><span>ForcingBooster</span><strong>Router</strong></div>
         </div>
         <div class="output-stage">
-          <div class="stage-label">Patch-wise denoising</div>
-          <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=06bbe6722a20" aria-label="Alternating canyon climber and sunlit studio world-model walk with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=bac06fb8b076" type="video/mp4"></video>
-          <div id="hero-region-captions" class="hero-region-captions" aria-hidden="true">
-            <p class="region-one">One denoising step is enough to preserve stable background details.</p>
-            <p class="region-many">More denoising steps are allocated to motion, fine textures, and newly revealed regions.</p>
+          <div class="output-head">
+            <div class="stage-label">Patch-wise denoising</div>
+            <div id="hero-region-captions" class="hero-region-captions" aria-hidden="true">
+              <p class="region-one">One denoising step is enough to preserve stable background details.</p>
+              <p class="region-many">More denoising steps are allocated to motion, fine textures, and newly revealed regions.</p>
+            </div>
           </div>
+          <video id="hero-denoising" autoplay muted playsinline loop preload="metadata" poster="assets/videos/hero-patch-denoising.jpg?v=06bbe6722a20" aria-label="Alternating canyon climber and sunlit studio world-model walk with patch-wise denoising driven by their real exit maps"><source src="assets/videos/hero-alternating-denoising.mp4?v=bac06fb8b076" type="video/mp4"></video>
         </div>
       </div>
     </div>
-    <p id="overview-caption" class="overview-caption reveal">ForcingBooster accelerates interactive video generation and world model by adaptively allocating different denoising steps to different patches. <strong>Static backgrounds need fewer updates than moving objects, new regions or detailed textures.</strong></p>
-  </div>
-</section>
-
-<section class="section dark gallery-section" id="interactive" aria-labelledby="interactive-title">
-  <div class="wrap">
-    <h2 class="headline reveal" id="interactive-title">Interactive Video Generation</h2>
-  </div>
-  <div class="wrap-wide">
-    <div class="player reveal" data-category="interactive" aria-label="Interactive video generation examples"></div>
-  </div>
-</section>
-
-<section class="section dark gallery-section world-section" id="world" aria-labelledby="world-title">
-  <div class="wrap">
-    <h2 class="headline reveal" id="world-title">Video World Model</h2>
-  </div>
-  <div class="wrap-wide">
-    <div class="player reveal" data-category="world" aria-label="Video world model examples"></div>
   </div>
 </section>
 
@@ -150,12 +134,12 @@
         </section>
         <section class="method-step" id="method-step-4" role="tabpanel" aria-labelledby="method-tab-4" hidden inert>
           <div class="method-visual is-paused">
-            <video muted playsinline preload="none" width="1600" height="1200" poster="assets/videos/how-it-works-4.jpg?v=8232799ed4c6" src="assets/videos/how-it-works-4.mp4?v=0ba4b0eaa5f8" aria-label="Efficiency"></video>
+            <video muted playsinline preload="none" width="1600" height="1200" poster="assets/videos/how-it-works-4.jpg?v=29c1c3cdac19" src="assets/videos/how-it-works-4.mp4?v=ae392fab794f" aria-label="Efficiency"></video>
             <div class="method-controls"><button class="method-toggle" type="button" aria-label="Play Efficiency" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="method-pause-glyph" d="M7 5v10M13 5v10"/><path class="method-play-glyph" d="M6 3.5 16 10 6 16.5Z"/></svg></button><button class="method-fullscreen" type="button" aria-label="Fullscreen Efficiency"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button></div>
           </div>
           <div class="method-copy">
             <h3>Less computation. Faster generation.</h3>
-            <p>Compared with the four-step baseline, the total number of denoising steps across patches drops by <span class="method-simple">about 50%</span>, giving <span class="method-simple">1.76×</span> faster denoising and <span class="method-simple">1.31×</span> faster end-to-end generation.</p>
+            <p>Compared with the four-step baseline, the total number of denoising steps across patches drops by <span class="method-simple">about 50%</span>, giving <span class="method-simple">1.68×</span> faster denoising and <span class="method-simple">1.31×</span> faster end-to-end generation.</p>
           </div>
         </section>
       </div>
@@ -166,6 +150,26 @@
         <button class="method-tab" type="button" role="tab" id="method-tab-4" aria-controls="method-step-4" aria-selected="false" tabindex="-1">Efficiency</button>
       </nav>
     </div>
+  </div>
+</section>
+
+<section class="section dark gallery-section" id="demo" aria-labelledby="demo-title">
+  <div class="demo-wrap">
+    <h2 class="headline reveal" id="demo-title">Demo</h2>
+    <section class="demo-group" id="interactive" aria-labelledby="interactive-title">
+      <div class="demo-head reveal">
+        <h3 class="subhead" id="interactive-title">Interactive Video Generation</h3>
+        <span class="demo-count"></span>
+      </div>
+      <div class="player reveal" data-category="interactive" aria-label="Interactive video generation examples"></div>
+    </section>
+    <section class="demo-group" id="world" aria-labelledby="world-title">
+      <div class="demo-head reveal">
+        <h3 class="subhead" id="world-title">Video World Model</h3>
+        <span class="demo-count"></span>
+      </div>
+      <div class="player reveal" data-category="world" aria-label="Video world model examples"></div>
+    </section>
   </div>
 </section>
 
@@ -180,9 +184,9 @@
         <p class="kpi-note">On average, reduces the total number of denoising steps applied across video patches by about half.</p>
       </div>
       <div class="kpi reveal">
-        <p class="kpi-value"><span class="grad">1.3×</span></p>
-        <h3 class="kpi-label">Additional speedup</h3>
-        <p class="kpi-note">Unlocks faster end-to-end video generation compared with the four-step baseline.</p>
+        <p class="kpi-value"><span class="grad">1.68×</span></p>
+        <h3 class="kpi-label">Generator speedup</h3>
+        <p class="kpi-note">Faster generator inference than the four-step baseline.</p>
       </div>
     </div>
   </div>
